@@ -1,0 +1,167 @@
+/* Alignment */
+
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+
+/* Typeface and Font */
+
+	body, input, select, textarea {
+		color: #9a9a9a;
+		font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+		font-size: 12pt;
+		font-weight: 400;
+		line-height: 1.65;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		line-height: 1.5;
+	}
+
+	.inner {
+		max-width: 75em;
+		margin: 0 auto;
+	}
+
+		@media screen and (max-width: 1280px) {
+
+			.inner {
+				max-width: 90%;
+			}
+
+		}
+
+		@media screen and (max-width: 480px) {
+
+			.inner {
+				max-width: 90%;
+			}
+
+		}
+
+/* Flex */
+
+	.flex {
+		display: -webkit-flex;
+	}
+
+/* Header */
+
+	#header {
+		position: absolute;
+		top: 2em;
+		z-index: 10001;
+	}
+
+/* Main Body */
+
+	#mainbody {
+		padding: 8em 0 9em 0;
+		background-image: url(../../images/banner.jpg);
+		background-size: cover;
+		background-position: bottom;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		text-align: center;
+		position: relative;
+	}
+
+		#mainbody:before {
+			content: '';
+			background: rgba(75, 75, 93, 0.85);
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+
+		#mainbody .inner {
+			border-top: 2px solid rgba(255, 255, 255, 0.2);
+			position: relative;
+			z-index: 10005;
+			padding-top: 8em;
+		}
+
+		#mainbody h1 {
+			font-size: 3.5em;
+			font-weight: 400;
+			color: #fff;
+			line-height: 1em;
+			margin: 0 0 1em 0;
+			padding: 0;
+		}
+
+		#mainbody h3 {
+			font-weight: 400;
+			color: #fff;
+			margin: 0;
+			font-size: 1.5em;
+		}
+
+		#mainbody p {
+			font-size: 1em;
+			color: rgba(255, 255, 255, 0.55);
+			margin-bottom: 1.75em;
+		}
+
+		#mainbody .flex {
+			-webkit-justify-content: center;
+			margin: 0 auto 4em auto;
+		}
+
+			#mainbody .flex div {
+				border-right: 2px solid rgba(255, 255, 255, 0.2);
+				padding: 0 8em;
+			}
+
+				#mainbody .flex div:last-child {
+					border: none;
+					padding-right: 0;
+				}
+
+				#mainbody .flex div:first-child {
+					padding-left: 0;
+				}
+
+
+		@media screen and (max-width: 1280px) {
+
+			#mainbody {
+				padding: 7em 0 6em 0;
+			}
+
+				#mainbody .inner {
+					padding-top: 6em;
+				}
+
+				#banner h1 {
+					font-size: 3em;
+				}
+
+				#mainbody h3 {
+					font-size: 1.25em;
+				}
+
+				#mainbody .flex div {
+					padding: 0 3em;
+				}
+
+		}
+
+/* Footer */
+
+	#footer {
+		padding: 1em 0;
+		background: #232323;
+		color: #fff;
+		text-align: center;
+	}
+
+
+/* Cards */

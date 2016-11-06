@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="main.css" />
+<script src="news.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://www.chartjs.org/assets/Chart.js"></script>
+
+    <script>
+        Chart.defaults.global.title.text="1 Yr Stock Quote Chart";
+        Chart.defaults.global.legend.display = false;
+        var chart;
+        var buyers;
+        function func1(dates,values,symbol,name) {
+
+            var labels1  =dates;
+            var buyerData = {
+                labels : labels1,
+                datasets : [
+                    {
+                        fillColor : "rgba(172,194,132,0.4)",
+                        strokeColor : "#ACC26D",
+                        pointColor : "#fff",
+                        pointStrokeColor : "#9DB86D",
+                        data : values
+                    }
+                ]
+            };
+            var options={
+                //Boolean - If we show the scale above the chart data
+
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            display: true
+                        }
+                    }]
+                } ,
+                scaleOverlay : false,
+
+                //Boolean - If we want to override with a hard coded scale
+                scaleOverride : false,
+                //Boolean - If we want to override with a hard coded scale
+
+
+                //** Required if scaleOverride is true **
+                //Number - The number of steps in a hard coded scale
+                scaleSteps : 14,
+                //Number - The value jump in the hard coded scale
+                scaleStepWidth : 70,
+                //Number - The scale starting value
+                scaleStartValue : 0,
+                //String - Colour of the scale line
+                scaleLineColor : "rgba(20,20,20,.7)",
+
+                //Number - Pixel width of the scale line
+                scaleLineWidth : 1,
+
+                //Boolean - Whether to show labels on the scale
+
+
+                //String - Scale label font declaration for the scale label
+                scaleFontFamily : "'Arial'",
+
+                //Number - Scale label font size in pixels
+                scaleFontSize : 0,
+
+                //String - Scale label font weight style
+                scaleFontStyle : "normal",
+
+                //String - Scale label font colour
+                scaleFontColor : "#666",
+
+                ///Boolean - Whether grid lines are shown across the chart
+                scaleShowGridLines : true,
+
+                //String - Colour of the grid lines
+                scaleGridLineColor : "rgba(0,0,0,.3)",
+
+                //Number - Width of the grid lines
+                scaleGridLineWidth : 1,
+
+                //Boolean - Whether the line is curved between points
+                bezierCurve : false,
+
+                //Boolean - Whether to show a dot for each point
+                pointDot : true,
+
+                //Number - Radius of each point dot in pixels
+                pointDotRadius : 1,
+
+                //Number - Pixel width of point dot stroke
+                pointDotStrokeWidth : 1,
+
+
+
+
+                //Boolean - Whether to show a stroke for datasets
+                datasetStroke : true,
+
+                //Number - Pixel width of dataset stroke
+                datasetStrokeWidth : 2,
+
+                //Boolean - Whether to fill the dataset with a colour
+                datasetFill : true,
+
+                //Boolean - Whether to animate the chart
+                animation : true,
+                pointHitDetectionRadius : 1,
+                //Number - Number of animation steps
+                animationSteps : 60,
+
+                //String - Animation easing effect
+                animationEasing : "easeOutQuart",
+
+                //Function - Fires when the animation is complete
+                onAnimationComplete : null
+            };
+
+
+
+                if (dates[4]!=0){
+                    $("#stockName").html(symbol.toUpperCase() + "&nbsp&nbsp&nbsp&nbsp&nbsp$"+values[252]+"&nbsp&nbsp&nbsp&nbsp&nbsp"+dates[252]);
+                    $("#title").html("Showing Data for "+name);
+                }
+                else $("#title").html(symbol.toUpperCase()+" not found");
+                buyers = document.getElementById('buyers').getContext('2d');
+                chart = new Chart(buyers).Line(buyerData,options);
+
+
+
+        }
+
+
+    </script>
+    <style>
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: #b4b4b4;
+            text-transform: none;
+            font-weight: 100;
+            font-style: italic;
+            font-size: xx-large;
+            padding-left: 1%;
+            vertical-align:text-bottom;
+            bottom: 0;
+
+
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #b4b4b4;
+            opacity:  1;
+            text-transform: none;
+            font-style: italic;
+            font-size: xx-large;
+            vertical-align:top;
+            line-height: normal;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #b4b4b4;
+            opacity:  1;
+            text-transform: none;
+            font-style: italic;
+            font-size: xx-large;
+            vertical-align:top;
+            line-height: normal;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #b4b4b4;
+            text-transform: none;
+            font-style: italic;
+            font-size: xx-large;
+            vertical-align:top;
+            line-height: normal;
+        }
+        html{
+
+            height: 100%;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background: #70bg32;
+            background-repeat:no-repeat;
+            background: -webkit-gradient(radial, center center, 0, center center, 460, from(#454545), to(#242424));
+
+            /* Safari 5.1+, Chrome 10+ */
+            background: -webkit-radial-gradient(circle, #353535, #161616);
+
+            /* Firefox 3.6+ */
+            background: -moz-radial-gradient(circle, #454545, #242424);
+
+            /* IE 10 */
+            background: -ms-radial-gradient(circle, #454545, #242424);
+
+        }
+        h1{
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        input:focus {outline: none; }
+    #stockField{
+        width: 100%;
+        text-transform: uppercase;
+        font-size: 10ex;
+
+        border: 0 solid;
+        color: white;
+        margin-top:0;
+        padding-top: 0;
+        background: #767676;
+        padding-left: 1%;
+        /*margin-left: 20%;*/
+        font-weight: 300;
+        font-family: "Helvetica Neue";
+        opacity: 10;
+        background: transparent;
+        border: none;
+
+    }
+        .heading{
+            font-family: "Futura";
+            color: #FFF;
+            font-size: 8ex;
+            font-weight: 100;
+        }
+        </style>
+</head>
+<body style="height: 100%; width: 100%">
+<!-- Header -->
+<header id="header" style="width: 100%;padding-bottom: 0;margin-bottom: 0px;">
+    <div class="inner">
+
+<div style="margin-bottom:0;padding-bottom: 0;margin-top:0;padding-top: 0">
+    <img src="stockstoryv5.png"style="bottom: 0;width: 30%;position: absolute;float: left;margin-bottom:0;vertical-align:bottom;padding-left:3em;display: inline">
+    <div style="padding-top: 0">
+    <input autofocus style="font-family:'Avenir Next';font-weight:lighter;padding-bottom:0;margin-bottom:0;text-align:right;width: 50%;float: right;display: inline" type="text" id="stockField" placeholder="Enter stock symbol here..." class="search" name="q">
+    </div>
+</div>
+    </div>
+</header>
+
+
+
+
+
+<!-- Main Body -->
+<section id="mainbody" style="height: 70vh;padding-top: 10em;margin-top: 0">
+    <div class="inner"style="padding-top: 2%">
+        <header style="padding-top: 0;padding-bottom: 5%">
+            <h1 style="text-align: center;display: inline;" class ="heading" id="title">Welcome to <h1 id="name" class="heading" style="display: inline;color: #b5d32e;">StockStory</h1></h1>
+        </header>
+        <p id="desc" style="font-weight:100;font-size:x-large;text-align: center;">StockStory provides solutions to those studying historical stock value trends and analyzing their correlation
+       with a company's relative news attention. StockStory allows users to view real trends in data and determine the real reasons behind these trends.  </p>
+        <div class="flex" style="width: 150vh;float: left;margin-left: 0">
+
+            <div style="float: left;display: inline">
+                <label id="charthead"class="heading" style="display:none;text-align: center;float:left;font-size: 5ex" for = "buyers">
+                    1 Yr Stock Quote Chart<br />
+
+                    <h4 style="font-weight: 100;" id="stockName"></h4>
+                    <canvas style="padding-left:0;margin-top:7%; display: block;margin-right:70px;overflow:hidden;float:left;background: transparent;margin-left: 0;position:;"id="buyers" width="650" height="400"></canvas>
+
+                </label>
+            </div>
+
+            <div style="float: right;margin-left: 7%">
+                <label id="storyhead"class="heading" style="text-align: center;display:none;font-size: 5ex" >
+                    News Stories<br/><br/>
+                    <div class="clearbody"style="float: left;width:400px;margin-left: 0" id="newsData"></div>
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <div>
+            &copy; StockStory 2016.
+        </div>
+    </div>
+</footer>
+
+    <script>
+
+        var symbol;
+        var name;
+        var dateString;
+        var url = "http://query.yahooapis.com/v1/public/yql";
+                $("#buyers").click(function(e) {
+            var points = chart.getPointsAtEvent(e);
+            $("#stockName").html(symbol.toUpperCase() + "&nbsp&nbsp&nbsp&nbsp&nbsp$"+points[0].value+"&nbsp&nbsp&nbsp&nbsp&nbsp"+points[0].label);
+            //alert (symbol+points[0].value+points[0].label);
+                   dateString = points[0].label.toString();
+                    dateString = dateString.replace('-','');
+                    dateString = dateString.replace('-','');
+
+
+                        //  $( ".datePick" ).datepicker({dateFormat: 'yy-mm-dd'} );
+                    setTimeout(function(){news(dateString,name)},1000);
+
+
+        });
+
+
+        $("#stockField").keypress(function(e) {
+            if(e.which == 13) {
+
+                $("#charthead").show();
+                $("#storyhead").show();
+                $("#name").hide();
+                $("#desc").remove();
+                var numDays = 252;
+                var dates = new Array(numDays);
+                var values = new Array(numDays);
+                for(var i=0;i<numDays;i++){
+                    dates[i] = 0;
+                    values[i] = 0;
+                }
+
+                var today1 = new Date();
+                var day = today1.getDate();
+                var month = today1.getMonth()+1; //January is 0!
+                var year = today1.getFullYear();
+                if(day<10){
+                    day='0'+day
+                }
+                if(month<10){
+                    month='0'+month
+                }
+
+                var today = year+'-'+month+'-'+day;
+                var lastYear = today1.getFullYear()-1;
+                var todayLastYear = lastYear+'-'+month+'-'+(day-'2');
+                var yqlURL="http://query.yahooapis.com/v1/public/yql?q=";
+                var dataFormat="&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+                $(function() { //Load jQueryUI DatePicker by class name
+                  //  $( ".datePick" ).datepicker({dateFormat: 'yy-mm-dd'} );
+
+                });
+
+
+                    symbol = $('#stockField').val();
+                $("#title").html("Loading Data for "+symbol.toUpperCase());
+                    var startDate=todayLastYear;
+                    var endDate=today;
+
+                var url = "http://query.yahooapis.com/v1/public/yql";
+                    var realtimeQ = yqlURL+"select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22" + symbol + "%22)%0A%09%09&"+ dataFormat;
+                    var historicalQ = yqlURL+"select%20*%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22"+ symbol +"%22%20and%20startDate%20%3D%20%22"+ startDate +"%22%20and%20endDate%20%3D%20%22"+ endDate +"%22"+ dataFormat;
+
+                    $(function() {
+
+                        $.getJSON(realtimeQ, function(json) {//YQL Request
+                            $('#symbol').text(json.query.results.quote.Name);//Assign quote.Param to span tag
+                            name = json.query.results.quote.Name.toString();
+
+                            $('#bidRealtime').text(json.query.results.quote.BidRealtime);
+
+                        });
+                    });
+
+                    $(function() {
+
+                        var j = numDays;
+                        var k = j;
+                        $.getJSON(historicalQ, function(json) {
+
+                            $.each(json.query.results.quote, function(i, quote) {//loop results.quote object
+                                dates[j] = quote.Date.toString();
+                                //alert(dates[j]);
+
+                                j-=1;
+
+                            });
+                            $.each(json.query.results.quote, function(i, quote) { //new each statement is needed
+
+                                values[k] = quote.Close.toString();
+
+                                k-=1;
+                            });
+
+                    });
+                });
+
+                dateString = year+month+day;
+
+                setTimeout(function(){func1(dates,values,symbol,name)},2500);
+                news(dateString,name);
+            }
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
