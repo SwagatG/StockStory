@@ -87,7 +87,7 @@ function getSentiment(data, num) {
     var url = "";
     url += "https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=";
     url += data[i][0];
-    url += "&token=be8bf41e9adc4efa85e9813d9ea64a4b";
+    url += "&token=8384def3072f438b84a9b45bead3d7fb";
     $.ajax({
         url: url,
         method: 'GET',
